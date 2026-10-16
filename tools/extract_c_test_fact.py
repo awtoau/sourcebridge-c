@@ -22,6 +22,11 @@ def descendants(node: dict[str, Any]) -> list[dict[str, Any]]:
 
 def expression(node: dict[str, Any]) -> dict[str, Any]:
     kind = node.get("kind")
+    if kind == "ParenExpr":
+        operands = node.get("inner", [])
+        if len(operands) != 1:
+            raise ValueError("parenthesized expression must have exactly one operand")
+        return expression(operands[0])
     if kind == "IntegerLiteral":
         return {
             "kind": "integer_literal",

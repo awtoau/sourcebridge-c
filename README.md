@@ -6,8 +6,10 @@ program with an expected combined stdout/stderr result.
 
 The pack is deliberately small. It validates an upstream case with a selected
 C compiler, records a whole-tree corpus manifest, and extracts a constrained
-fact model from Clang's JSON AST. Unsupported syntax fails explicitly; it does
-not produce target code or infer a rule.
+fact model from Clang's JSON AST. The scalar expression subset includes
+parenthesized expressions, integer literals, and binary `+`, `-`, `*`, and `/`
+operators. Unsupported syntax fails explicitly; it does not produce target
+code or infer a rule.
 
 ## Relationship to linux-rs
 
