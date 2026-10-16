@@ -9,7 +9,7 @@
       "source_path": "scripts/fingerprint.py",
       "disposition": "adapt",
       "capability": "normalized AST shape and semantic-call fingerprints",
-      "reason": "The algorithm is useful for grouping C source facts, but its current input is a Linux compile database and its implementation requires libclang Python bindings.",
+      "reason": "This is an auxiliary Linux-rs analysis tool, not the c2rust translation pipeline. Its algorithm is useful for grouping C source facts, but its current input is a Linux compile database and its implementation requires libclang Python bindings.",
       "next_validation": "Extract equivalent fingerprints from compiler-grounded Sourcebridge C facts and compare deterministic results across selected c-testsuite cases."
     },
     {
@@ -38,4 +38,3 @@
     }
   ]
 }
-

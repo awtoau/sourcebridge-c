@@ -9,6 +9,34 @@ C compiler, records a whole-tree corpus manifest, and extracts a constrained
 fact model from Clang's JSON AST. Unsupported syntax fails explicitly; it does
 not produce target code or infer a rule.
 
+## Relationship to linux-rs
+
+This pack does not replace or import linux-rs's current translation pipeline.
+That pipeline uses c2rust to produce raw Rust, then applies Linux-specific
+rule checks and kernel integration validation:
+
+```text
+Linux C + compile_commands.json
+  -> c2rust
+  -> raw Rust
+  -> Linux rules and integration checks
+  -> Rust compiler, Clippy, QEMU, and KUnit evidence
+```
+
+The Clang AST fingerprinting code identified during migration is an auxiliary
+Linux-rs analysis tool, not its translator. This pack currently stops at
+compiler-grounded C facts:
+
+```text
+c-testsuite C case
+  -> Clang AST
+  -> Sourcebridge C facts and source-validation evidence
+```
+
+A future profile may adapt the c2rust pipeline as a selected backend, but no
+such adapter exists yet. No existing Linux rule has been transferred to this
+pack.
+
 ## Corpus and variant
 
 - Corpus: `https://github.com/c-testsuite/c-testsuite.git`
