@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "source": {
+    "remote": "https://github.com/awto-au/linux-rs.git",
+    "revision": "e48c8aae898d1bd10b08c76da54ba01368b36d2c"
+  },
+  "candidates": [
+    {
+      "source_path": "scripts/fingerprint.py",
+      "disposition": "adapt",
+      "capability": "normalized AST shape and semantic-call fingerprints",
+      "reason": "The algorithm is useful for grouping C source facts, but its current input is a Linux compile database and its implementation requires libclang Python bindings.",
+      "next_validation": "Extract equivalent fingerprints from compiler-grounded Sourcebridge C facts and compare deterministic results across selected c-testsuite cases."
+    },
+    {
+      "source_path": "scripts/check_tu_provenance.py",
+      "disposition": "already_represented",
+      "capability": "source-to-generated artifact provenance checks",
+      "reason": "Sourcebridge's neutral evidence schema already models source variants, conversion decisions, generated artifacts, and validation occurrences. No Linux code is imported."
+    },
+    {
+      "source_path": "scripts/c2rust_output_check_common.py",
+      "disposition": "retain",
+      "capability": "c2rust Rust support-crate construction",
+      "reason": "It depends on a kernel Rust sysroot, nightly compiler behavior, and c2rust support crates."
+    },
+    {
+      "source_path": "scripts/check_c2rust_rule_conformance.py",
+      "disposition": "retain",
+      "capability": "Linux c2rust output rule conformance",
+      "reason": "It reads Linux-specific rules, a c2rust baseline layout, and kernel source cross-references."
+    },
+    {
+      "source_path": "rulesdb/rules",
+      "disposition": "retain",
+      "capability": "Linux C to Rust mappings",
+      "reason": "The rules include kernel APIs, configuration, ABI, licensing, and runtime assumptions. They are historical evidence, not generic C rules."
+    }
+  ]
+}
+

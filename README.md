@@ -55,3 +55,8 @@ corpus pack.
 
 No local-model request is part of this pack's workflow.
 
+The audited Linux-rs reuse boundary is recorded and checked with:
+
+```text
+python3 tools/verify_linux_migration_inventory.py
+```
