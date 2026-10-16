@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "fact_schema": "sourcebridge.c.ast-facts.v1",
+  "source": {
+    "path": "tests/single-exec/00002.c",
+    "sha256": "343dee856433f5cae74d3e0f56fb2f4fc25256172c3028fdd3d393541cc8bd33"
+  },
+  "variant": {
+    "schema_version": 1,
+    "language": "c",
+    "compiler": {
+      "command": "clang",
+      "version": "22.1.8"
+    },
+    "target": "x86_64-redhat-linux-gnu",
+    "standard": "c11",
+    "optimization": "O0"
+  },
+  "functions": [
+    {
+      "name": "main",
+      "return_type": "int",
+      "return_expression": {
+        "kind": "binary_operator",
+        "operator": "-",
+        "type": "int",
+        "left": {
+          "kind": "integer_literal",
+          "type": "int",
+          "value": 3
+        },
+        "right": {
+          "kind": "integer_literal",
+          "type": "int",
+          "value": 3
+        }
+      }
+    }
+  ]
+}

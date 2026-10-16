@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "language": "c",
+  "compiler": {
+    "command": "clang",
+    "version": "22.1.8"
+  },
+  "target": "x86_64-redhat-linux-gnu",
+  "standard": "c11",
+  "optimization": "O0"
+}
+
