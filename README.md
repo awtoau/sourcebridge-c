@@ -91,7 +91,19 @@ source and target validation profile before promotion. Kernel APIs, Linux build
 configuration, architecture assumptions, and runtime shims remain in the Linux
 corpus pack.
 
-No local-model request is part of this pack's workflow.
+The local-model baseline is optional and cannot propose or change a rule. It
+measures whether a bounded queue of already-supported compiler facts correctly
+returns `no_change_needed`, rather than spending subsequent conversion work on
+known coverage. Build the facts from a temporary corpus checkout, then run:
+
+```text
+python3 tools/run_c_fact_baseline_batch.py --facts-dir tmp/ollama-c-facts
+```
+
+The worker is local-only, digest-pinned, preserves raw staged/rejected
+responses with their fact provenance, and unloads after the one-language batch.
+Use unsupported compiler fact shapes for proposal work; this baseline exists to
+measure unnecessary-request avoidance.
 
 The audited Linux-rs reuse boundary is recorded and checked with:
 

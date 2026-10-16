@@ -1,0 +1,84 @@
+{
+  "elapsed_seconds": 7.03862266599026,
+  "input": {
+    "fact_schema": "sourcebridge.c.ast-facts.v1",
+    "functions": [
+      {
+        "name": "main",
+        "return_expression": {
+          "kind": "integer_literal",
+          "type": "int",
+          "value": 0
+        },
+        "return_type": "int"
+      }
+    ],
+    "source_path": "tests/single-exec/00056.c",
+    "source_sha256": "00c4a038a3b12b353e5115c122b136eb175a7dc1dba5d36bec5ad6878c16f4ae",
+    "variant": {
+      "compiler": {
+        "command": "clang",
+        "version": "22.1.8"
+      },
+      "language": "c",
+      "optimization": "O0",
+      "schema_version": 1,
+      "standard": "c11",
+      "target": "x86_64-redhat-linux-gnu"
+    }
+  },
+  "model": {
+    "digest": "9ec8897f747e246e970bc5cfdda85d22f1123dc2e3d34978a010a75968716849",
+    "name": "qwen2.5-coder:14b"
+  },
+  "proposal": {
+    "fact_schema": "sourcebridge.c.ast-facts.v1",
+    "functions": [
+      {
+        "name": "main",
+        "return_expression": {
+          "kind": "integer_literal",
+          "type": "int",
+          "value": 0
+        },
+        "return_type": "int"
+      }
+    ],
+    "open_question": "no_change_needed",
+    "recommendation": "no_change_needed",
+    "source_path": "tests/single-exec/00056.c",
+    "source_sha256": "00c4a038a3b12b353e5115c122b136eb175a7dc1dba5d36bec5ad6878c16f4ae",
+    "status_claim": "unvalidated-llm-proposal",
+    "variant": {
+      "compiler": {
+        "command": "clang",
+        "version": "22.1.8"
+      },
+      "language": "c",
+      "optimization": "O0",
+      "schema_version": 1,
+      "standard": "c11",
+      "target": "x86_64-redhat-linux-gnu"
+    }
+  },
+  "raw_response": {
+    "created_at": "2026-10-16T03:02:36.469455947Z",
+    "done": true,
+    "done_reason": "stop",
+    "eval_count": 277,
+    "eval_duration": 6846035000,
+    "load_duration": 1447111,
+    "message": {
+      "content": "{\n  \"fact_schema\": \"sourcebridge.c.ast-facts.v1\",\n  \"functions\": [\n    {\n      \"name\": \"main\",\n      \"return_expression\": {\n        \"kind\": \"integer_literal\",\n        \"type\": \"int\",\n        \"value\": 0\n      },\n      \"return_type\": \"int\"\n    }\n  ],\n  \"open_question\": \"no_change_needed\",\n  \"recommendation\": \"no_change_needed\",\n  \"source_path\": \"tests/single-exec/00056.c\",\n  \"source_sha256\": \"00c4a038a3b12b353e5115c122b136eb175a7dc1dba5d36bec5ad6878c16f4ae\",\n  \"status_claim\": \"unvalidated-llm-proposal\",\n  \"variant\": {\n    \"compiler\": {\n      \"command\": \"clang\",\n      \"version\": \"22.1.8\"\n    },\n    \"language\": \"c\",\n    \"optimization\": \"O0\",\n    \"schema_version\": 1,\n    \"standard\": \"c11\",\n    \"target\": \"x86_64-redhat-linux-gnu\"\n  }\n}",
+      "role": "assistant"
+    },
+    "model": "qwen2.5-coder:14b",
+    "prompt_eval_cached_count": 107,
+    "prompt_eval_count": 283,
+    "prompt_eval_duration": 117873000,
+    "total_duration": 7037933006
+  },
+  "sequence": 4,
+  "status": "unvalidated-llm-proposal",
+  "worker_session_id": "f814b901febbf573bd2e28ee3efc65ea8ca0b98bfb928200413d9bfefb9c42e1"
+}
