@@ -71,6 +71,14 @@ python3 tools/extract_c_test_fact.py \
   --output evidence/00002.clang.facts.json
 ```
 
+Run the native C-to-Rust proof against that same upstream case:
+
+```text
+python3 tools/validate_c_scalar_rust.py \
+  --corpus-root ../c-testsuite \
+  --rust-pack ../sourcebridge-rust
+```
+
 ## Rule migration boundary
 
 [`sourcebridge-linux`](https://github.com/awtoau/sourcebridge-linux) preserves
