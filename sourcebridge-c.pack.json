@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "id": "sourcebridge-c",
+  "kind": "frontend",
+  "version": "0.1.0",
+  "provides": {
+    "source_languages": ["c"],
+    "target_environments": []
+  },
+  "entrypoints": {
+    "engine_tests": "engine-tests/catalogue.json"
+  }
+}

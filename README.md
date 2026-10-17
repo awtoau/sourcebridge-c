@@ -73,6 +73,27 @@ python3 tools/extract_c_test_fact.py \
   --output evidence/00002.clang.facts.json
 ```
 
+## Sourcebridge engine-test prototype
+
+The pack-level prototype in [`sourcebridge-c.pack.json`](sourcebridge-c.pack.json)
+registers one copied, hash-verified `c-testsuite` fixture through the common
+Sourcebridge engine-test catalogue:
+
+```text
+PYTHONPATH=../sourcebridge python3 -m sourcebridge.cli dev \
+  sourcebridge-c test 3000002 \
+  --database tmp/sourcebridge-c-engine-tests.db \
+  --pack-manifest sourcebridge-c.pack.json
+```
+
+The stable test ID `3000002` is the C pack's deterministic namespace prefix
+(`3000000`) plus upstream case `00002`; it is distinct from the existing
+low-numbered pack examples and Sourcebridge rejects cross-pack ID collisions.
+The adapter records `source=passed`, `extraction=passed`, and
+`oracle=passed` only after rerunning the pinned Clang compile/execute check and
+matching the checked-in AST facts. `target=blocked` is intentional: this
+prototype has no generic C target backend or C-to-Rust equivalence adapter.
+
 Run the native C-to-Rust proof against that same upstream case:
 
 ```text

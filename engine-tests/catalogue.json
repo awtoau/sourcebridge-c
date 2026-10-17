@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "pack_id": "sourcebridge-c",
+  "adapter": {
+    "id": "json-command",
+    "config": {
+      "argv": ["python3", "../../../run_c_engine_test.py", "{fixture_path}"],
+      "timeout_seconds": 60
+    }
+  },
+  "tests": [
+    {
+      "id": 3000002,
+      "name": "c-testsuite-single-exec-00002-fact-smoke",
+      "fixture": "fixtures/tests/single-exec/00002.c",
+      "expected": {
+        "source": {"status": "passed"},
+        "extraction": {"status": "passed"},
+        "target": {"status": "blocked"},
+        "oracle": {"status": "passed"}
+      }
+    }
+  ]
+}
