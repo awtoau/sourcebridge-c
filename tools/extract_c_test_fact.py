@@ -51,22 +51,16 @@ def source_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--corpus-root", type=Path, required=True)
-    parser.add_argument("--source", required=True)
-    parser.add_argument("--variant", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    root = args.corpus_root.resolve()
-    source = (root / args.source).resolve()
+def extract_fact(source: Path, root: Path, variant: dict[str, Any]) -> dict[str, Any]:
+    """Extract one supported fact payload without writing an intermediate file."""
+    root = root.resolve()
+    source = source.resolve()
     try:
         relative = source.relative_to(root)
     except ValueError as error:
-        raise ValueError("--source must stay inside --corpus-root") from error
+        raise ValueError("source must stay inside root") from error
     if not source.is_file():
-        raise ValueError(f"source does not exist: {args.source}")
-    variant = json.loads(args.variant.read_text(encoding="utf-8"))
+        raise ValueError(f"source does not exist: {relative.as_posix()}")
     if variant.get("language") != "c":
         raise ValueError("variant language must be c")
     compiler = variant["compiler"]["command"]
@@ -95,7 +89,7 @@ def main() -> int:
         })
     if len(functions) != 1:
         raise ValueError("source must define exactly one supported main function")
-    payload = {
+    return {
         "schema_version": 1,
         "fact_schema": "sourcebridge.c.ast-facts.v1",
         "source": {
@@ -105,6 +99,25 @@ def main() -> int:
         "variant": variant,
         "functions": functions,
     }
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--corpus-root", type=Path, required=True)
+    parser.add_argument("--source", required=True)
+    parser.add_argument("--variant", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args()
+    root = args.corpus_root.resolve()
+    source = (root / args.source).resolve()
+    try:
+        relative = source.relative_to(root)
+    except ValueError as error:
+        raise ValueError("--source must stay inside --corpus-root") from error
+    if not source.is_file():
+        raise ValueError(f"source does not exist: {args.source}")
+    variant = json.loads(args.variant.read_text(encoding="utf-8"))
+    payload = extract_fact(source, root, variant)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     print(f"extracted facts for {relative.as_posix()}")
